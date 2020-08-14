@@ -1,11 +1,11 @@
-import numpy as np
+import numpy as np # This provides more functionalities to 'array'
 
+# Create a new data structure
 class Node():
     def __init__(self, state, pos, action):
         self.state = state
         self.pos = pos
         self.action = action
-
 
 
 class QueneFrontier():
@@ -28,6 +28,7 @@ class QueneFrontier():
             return self.frontier.pop(0)
 
 
+# Pretty much useless for this problem unless the array is huge
 class StackFrontier(QueneFrontier):
     def remove(self):
         if(self.is_empty()):
@@ -36,19 +37,14 @@ class StackFrontier(QueneFrontier):
             return self.frontier.pop(-1)
 
 
-def reverse(tuples):
-    new_tup = ()
-    for k in reversed(tuples):
-        new_tup = new_tup + (k,)
-    return new_tup
-
-
+# Interesting stuffs in here
 class Detector():
     def __init__(self, graph):
         self.frontier = QueneFrontier()
         self.explored_action = set()
         self.graph = graph
     
+
     def check_cycle(self):
         x = 0
         y = 0
@@ -99,15 +95,17 @@ class Detector():
                  
 
 
-graph = np.array([
-    [0, 0, 1],
-    [1, 0, 0],
-    [0, 1, 0]
-])
+# For testing only
+if __namw__ == '__main__':
+    graph = np.array([
+        [0, 0, 1],
+        [1, 0, 0],
+        [0, 1, 0]
+    ])
 
-detector = Detector(graph)
+    detector = Detector(graph)
 
-cycle = detector.check_cycle()
+    cycle = detector.check_cycle()
 
-if not cycle:
-    print("No cycle was found!")
+    if not cycle:
+        print("No cycle was found!")
