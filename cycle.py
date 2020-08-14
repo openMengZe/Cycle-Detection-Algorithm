@@ -96,7 +96,7 @@ class Detector():
 
 
 # For testing only
-if __namw__ == '__main__':
+if __name__ == '__main__':
     graph = np.array([
         [0, 0, 1],
         [1, 0, 0],
